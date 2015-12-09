@@ -1,14 +1,21 @@
 #include "DownLoadData.h"
 
-DownLoadData::DownLoadData(string ws, string date) {
-	szWebSite = ws;
-	AdjClose = 0.0;
-	InputDate = date;
+//DownLoadData::DownLoadData(string ws, string date) {
+//	szWebSite = ws;
+//	AdjClose = 0.0;
+//	InputDate = date;
+//}
+
+DownLoadData* DownLoadData::DLD_instance = NULL;
+DownLoadData* DownLoadData::instance() {
+	if (DLD_instance == NULL)
+		DLD_instance = new DownLoadData();
+	return DLD_instance;
 }
 
-double DownLoadData::obtainNumber() {
+double DownLoadData::obtainNumber(string date) {
 	strStream.ignore(1024, '\n'); // ignore first line
-
+	InputDate = date;
 	while (strStream.good())
 	{
 		if (!strStream.getline(szSub, sizeof(szSub), ',')) break;
@@ -55,8 +62,9 @@ void DownLoadData::printData() {
 	}
 
 }
-void DownLoadData::downloadFile()
+void DownLoadData::downloadFile(string ws)
 {
+	szWebSite = ws;
 	IStream* pStream = 0;
 	URLOpenBlockingStream(0, szWebSite.c_str(), &pStream, 0, 0); // Open WebLink
 	if (pStream == 0) return;  // failure 

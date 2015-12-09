@@ -22,6 +22,7 @@ int main()
 	double finalResult = 0;
 	string TempWS = "http://ichart.yahoo.com/table.csv?s=";
 	string date, month, year;
+	char repeat = 'y';
 
 	string szWebSite[30];
 	szWebSite[0] = "MMM";
@@ -55,7 +56,7 @@ int main()
 	szWebSite[28] = "WMT";
 	szWebSite[29] = "DIS";
 
-	while (1) {
+	while (repeat=='y' || repeat == 'Y') {
 		cout << "Date(DD): ";
 		cin >> date;
 		cout << "Month(MM): ";
@@ -65,10 +66,11 @@ int main()
 		date = year + "-" + month + "-" + date;
 
 		for (int i = 0; i < 30; i++) {
-			DownLoadData Test(TempWS + szWebSite[i], date);
-			Test.downloadFile();
-			StockResult[i] = Test.obtainNumber();
-			cout << StockResult[i] << endl;
+			DownLoadData* Test;
+			Test = DownLoadData::instance();
+			Test->downloadFile(TempWS + szWebSite[i]);
+			StockResult[i] = Test->obtainNumber(date);
+			cout <<i+1<<". "<< StockResult[i] << endl;
 		}
 
 		for (int i = 0; i < 30; i++) {
@@ -77,7 +79,9 @@ int main()
 
 		cout << "******************************************************************" << endl;
 		cout << finalResult / 0.14985889030177 << endl;
-
+		cout << "Would you like to chack another day?(y/n)" << endl;
+		finalResult = 0;
+		cin >> repeat;
 	}
 	system("pause");
 	return 0;
