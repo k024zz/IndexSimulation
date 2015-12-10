@@ -8,6 +8,7 @@ class IndexSimulator {
 public:
 	void run();
 	IndexSimulator(IndexAlgorithm* indexAlgorithm);
+	~IndexSimulator();
 
 private:
 	void init();

@@ -4,9 +4,11 @@
 void IndexSimulator::run() {
 	init();
 	string date;
-	cout << "Input date:";
-	while (date != "") {
-		m_indexAlgorithm->calculateIndex(date);
+	cout << "Input date(YYYY-MM-DD): ";
+	cin >> date;
+	while (date != "exit") {
+		cout << m_indexAlgorithm->calculateIndex(date) << endl;
+		cout << "Input date(YYYY-MM-DD): ";
 		cin >> date;
 	}
 }
@@ -17,4 +19,11 @@ void IndexSimulator::init() {
 
 IndexSimulator::IndexSimulator(IndexAlgorithm* indexAlgorithm) {
 	m_indexAlgorithm = indexAlgorithm;
+}
+
+IndexSimulator::~IndexSimulator() {
+	if (m_indexAlgorithm) {
+		delete m_indexAlgorithm;
+		m_indexAlgorithm = NULL;
+	}
 }
