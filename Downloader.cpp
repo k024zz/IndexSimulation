@@ -34,7 +34,7 @@ void Downloader::download() {
 	szWebSite[29] = "DIS";
 	string TempWS = "http://ichart.yahoo.com/table.csv?s=";
 
-	for (int i = 0; i < 1; i++) {
+	for (int i = 0; i < 30; i++) {
 		downloadFile(TempWS + szWebSite[i]);
 		map<string, double> stock;
 		while (strStream.good())

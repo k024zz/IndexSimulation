@@ -2,15 +2,9 @@
 #include <string>
 
 void IndexSimulator::run(string date) {
-	//init();
-	//string date;
-	//cout << "Input date(YYYY-MM-DD): ";
-	//cin >> date;
-	//while (date != "exit") {
-		cout << m_indexAlgorithm->calculateIndex(date) << endl;
-		//cout << "Input date(YYYY-MM-DD): ";
-	//	cin >> date;
-	//}
+	
+	if(date != "exit")
+		cout <<"Calculated Index: "<< m_indexAlgorithm->calculateIndex(date) <<endl;
 }
 
 void IndexSimulator::init() {
