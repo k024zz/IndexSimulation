@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include "IndexSimulator.h"
@@ -20,5 +19,4 @@ int main()
 
 	system("pause");
 	return 0;
-
 }
