@@ -1,16 +1,17 @@
 #pragma once
 
 #include "IndexAlgorithm.h"
+#include "Simulator.h"
 #include <iostream>
 using namespace std;
 
-class IndexSimulator {
+class IndexSimulator : public Simulator {
 public:
-	void run();
+	virtual void run();
 	IndexSimulator(IndexAlgorithm* indexAlgorithm);
 	~IndexSimulator();
 
-private:
+protected:
 	void init();
 	IndexAlgorithm* m_indexAlgorithm;
 };
