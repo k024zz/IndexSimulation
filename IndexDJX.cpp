@@ -1,5 +1,9 @@
 #include "IndexDJX.h"
 
+IndexDJX::IndexDJX(Downloader* downloader) {
+	m_downloader = downloader;
+}
+
 void IndexDJX::downloadData(){
 	m_downloader->download();
 }
@@ -10,12 +14,6 @@ double IndexDJX::calculateIndex(std::string date) {
 		adjustPrice += stock.second[date];
 	}
 	return adjustPrice / 0.14985889030177;
-}
-
-IndexDJX* IndexDJX::createIndexDJX(Downloader* downloader) {
-	IndexDJX* indexDJX = new IndexDJX();
-	indexDJX->m_downloader = downloader;
-	return indexDJX;
 }
 
 IndexDJX::~IndexDJX() {

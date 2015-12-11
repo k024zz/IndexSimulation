@@ -13,17 +13,8 @@ using namespace std;
 
 class Downloader {
 public:
-	void download();
-	map<string, map<string, double>>& getStockPrice();
-	void printMap();
-private:
-	stringstream strStream;
-	string szWebSite;
-	char TradeDate[26] = "";
-	double AdjClose;
-	char szSub[100];
-	string InputDate;
-	void downloadFile(string ws);
-	
+	virtual void download() = 0;
+	virtual map<string, map<string, double>>& getStockPrice() = 0;
+protected:
 	map<string, map<string, double>> m_StocksPrice;
 };

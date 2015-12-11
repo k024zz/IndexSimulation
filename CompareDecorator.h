@@ -11,8 +11,11 @@ using namespace std;
 
 class CompareDecorator :public Decorator{
 public:
-	CompareDecorator(Simulator* sim) : Decorator(sim) {};
-	map<string, double> getRealIndexMap();
+	CompareDecorator(Simulator* sim);
+	map<string, double>& getRealIndexMap();
 	virtual void run(string date);
+
+private:
+	map<string, double> m_realIndexMap;
 };
 

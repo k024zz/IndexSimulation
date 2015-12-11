@@ -1,6 +1,6 @@
-#include "Downloader.h"
+#include "YahooDownloader.h"
 
-void Downloader::download() {
+void YahooDownloader::download() {
 	string szWebSite[30];
 	szWebSite[0] = "MMM";
 	szWebSite[1] = "AXP";
@@ -34,7 +34,7 @@ void Downloader::download() {
 	szWebSite[29] = "DIS";
 	string TempWS = "http://ichart.yahoo.com/table.csv?s=";
 
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 30; i++) {
 		downloadFile(TempWS + szWebSite[i]);
 		map<string, double> stock;
 		while (strStream.good())
@@ -58,13 +58,11 @@ void Downloader::download() {
 	}
 }
 
-map<string, map<string, double>>& Downloader::getStockPrice() {
+map<string, map<string, double>>& YahooDownloader::getStockPrice() {
 	return m_StocksPrice;
 }
 
-void Downloader::printMap() {
-	//m_StocksPrice.find("GOOG");
-
+void YahooDownloader::printMap() {
 	for (auto stock : m_StocksPrice) {
 		cout << stock.first << endl;
 		for (auto price : stock.second) {
@@ -72,7 +70,8 @@ void Downloader::printMap() {
 		}
 	}
 }
-void Downloader::downloadFile(string ws)
+
+void YahooDownloader::downloadFile(string ws)
 {
 	szWebSite = ws;
 	IStream* pStream = 0;

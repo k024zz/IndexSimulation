@@ -6,14 +6,7 @@
 #include <tchar.h>
 using namespace std;
 
-void CompareDecorator::run(string date) {
-	Decorator::run(date);
-	double real = 0;
-	if(date!="exit")
-	cout<< "Real Dow Jones Index: " <<real+getRealIndexMap().find(date)->second<<endl;
-}
-map<string, double> CompareDecorator::getRealIndexMap() {
-	map<string, double> realIndexMap;
+CompareDecorator::CompareDecorator(Simulator* sim) : Decorator(sim) {
 	stringstream strStream;
 	char szSub[100];
 	char TradeDate[26] = "";
@@ -34,13 +27,17 @@ map<string, double> CompareDecorator::getRealIndexMap() {
 		double index;
 		ss >> date;
 		ss >> index;
-		realIndexMap[date] = index;
+		m_realIndexMap[date] = index;
 	}
+}
 
-	/*for (auto i : realIndexMap) {
-		cout << i.first << "    " << i.second << endl;
-	}*/
-
-
-	return realIndexMap;
+void CompareDecorator::run(string date) {
+	Decorator::run(date);
+	double real = 0;
+	if (date != "exit" && getRealIndexMap().find(date) != getRealIndexMap().end()) {
+		cout << "Real Dow Jones Index: " << real + getRealIndexMap().find(date)->second << endl;
+	}
+}
+map<string, double>& CompareDecorator::getRealIndexMap() {
+	return m_realIndexMap;
 }

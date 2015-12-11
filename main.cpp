@@ -6,6 +6,8 @@
 #include "Downloader.h"
 #include "Logger.h"
 #include "CompareDecorator.h"
+#include "IndexAlgorithmFactory.h"
+#include "YahooDownloader.h"
 
 #pragma comment(lib, "urlmon.lib")
 using namespace std;
@@ -16,8 +18,9 @@ int main()
 	string date;
 	string IndexSelect = "";
 	string APISelect = "";
-	Downloader* DL = new Downloader();
-	IndexAlgorithm* indexAlgorithm = IndexDJX::createIndexDJX(DL);
+	IndexAlgorithmFactory IAFactory;
+	Downloader* DL = new YahooDownloader();
+	IndexAlgorithm* indexAlgorithm = IAFactory.createAlgorithm(DJI, DL);
 	IndexSimulator* ISimulator = new IndexSimulator(indexAlgorithm);
 	Simulator* aSimulator = new CompareDecorator(ISimulator);
 	
