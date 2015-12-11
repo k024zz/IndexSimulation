@@ -3,15 +3,18 @@
 #include "IndexAlgorithm.h"
 #include "Simulator.h"
 #include <iostream>
+#include <string>
+
 using namespace std;
 
 class IndexSimulator : public Simulator {
 public:
-	virtual void run();
+	virtual void run(string date);
 	IndexSimulator(IndexAlgorithm* indexAlgorithm);
+	void init();
 	~IndexSimulator();
 
 protected:
-	void init();
+	
 	IndexAlgorithm* m_indexAlgorithm;
 };

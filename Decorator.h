@@ -6,6 +6,6 @@ class Decorator :public Simulator {
 		Simulator* sim;
 public:
 	Decorator(Simulator* Ds);
-	void run();
+	void run(std::string date);
 };
 

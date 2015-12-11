@@ -1,16 +1,16 @@
 #include "IndexSimulator.h"
 #include <string>
 
-void IndexSimulator::run() {
-	init();
-	string date;
-	cout << "Input date(YYYY-MM-DD): ";
-	cin >> date;
-	while (date != "exit") {
+void IndexSimulator::run(string date) {
+	//init();
+	//string date;
+	//cout << "Input date(YYYY-MM-DD): ";
+	//cin >> date;
+	//while (date != "exit") {
 		cout << m_indexAlgorithm->calculateIndex(date) << endl;
-		cout << "Input date(YYYY-MM-DD): ";
-		cin >> date;
-	}
+		//cout << "Input date(YYYY-MM-DD): ";
+	//	cin >> date;
+	//}
 }
 
 void IndexSimulator::init() {
